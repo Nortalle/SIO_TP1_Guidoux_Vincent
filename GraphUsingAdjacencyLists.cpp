@@ -1,13 +1,14 @@
 /*
  ------------------------------------------------------------------------------
  Labo        : TP1
- File        : DoubleLinkedList.h
- Author(s)   : Vincent Guidoux
- Date        : 18.04.2018
+ Fichier     : GraphUsingAdjacencyLists.cpp
+ Auteur      : Vincent Guidoux
+ Date        : 24.04.2018
 
- Goal        : List doublement chainées
-
- Commentaire : Labo POO2
+ but         :  Implémente les différntes fonctions qui permettent : la lecture
+                d'un fichier de données et de le transcrire en graphe, setters
+                et getters.
+ commentaires: Il s'agit des vestiges d'un laboratoire d'ASD
  ------------------------------------------------------------------------------
 */
 
@@ -25,29 +26,19 @@ GraphUsingAdjacencyLists::GraphUsingAdjacencyLists(const string &path) {
 
     degreMin = nbrAretes;
 
-    tabDegres = new size_t[nbrSommets];
-
     adjencyLists = new DoubleLinkedList[nbrSommets];
 
     for (size_t i = 0; i < nbrAretes; i++) {
         size_t v, w;
-
         s >> v >> w;
         addEdge(v - 1, w - 1);
     }
     s.close();
 
-
-
     for (size_t sommet = 0; sommet < nbrSommets; sommet++) {
         degreMax = degreMax < adjencyLists[sommet].size() ? adjencyLists[sommet].size() : degreMax;
         degreMin = degreMin > adjencyLists[sommet].size() ? adjencyLists[sommet].size() : degreMin;
-        tabDegres[sommet] = adjencyLists[sommet].size();
     }
-
-    cout << "min" << degreMin << " max" <<  degreMax;
-
-
 }
 
 void GraphUsingAdjacencyLists::addEdge(size_t v, size_t w) {
@@ -69,9 +60,6 @@ size_t  GraphUsingAdjacencyLists::degreMaximum() const {
     return degreMax;
 }
 
-size_t GraphUsingAdjacencyLists::degreSommet(size_t sommet) const {
-    return tabDegres[sommet];
-}
 
 size_t GraphUsingAdjacencyLists::degreMinimum() const {
     return degreMin;

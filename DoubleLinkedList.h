@@ -18,17 +18,16 @@
 #include <stdexcept>
 #include <iostream>
 
-class DoubleLinkedList;
-
 class DoubleLinkedList {
-private:
-
+public:
     typedef struct Node {
 
         Node *previous = nullptr;
         size_t element;
         Node *next = nullptr;
     } Node;
+private:
+
 
     Node *head = nullptr;
 

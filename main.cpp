@@ -1,15 +1,16 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+ ------------------------------------------------------------------------------
+ Labo        : TP1
+ Fichier     : main.cpp
+ Auteur      : Vincent Guidoux
+ Date        : 24.04.2018
 
-/* 
- * File:   main.cpp
- * Author: Nortalle
- *
- * Created on 15. mars 2018, 15:12
- */
+ but         : Classe Main, elle charge un fichier dans un graphe
+                le colorie
+
+ commentaires: Il s'agit des vestiges d'un laboratoire d'ASD
+ ------------------------------------------------------------------------------
+*/
 
 #include <cstdlib>
 #include <iostream>
@@ -21,7 +22,7 @@ using namespace std;
 
 int main(int argc, char **argv) {
 
-    string path = "VLSI1.txt";
+    string path = argv[1];
 
     cout << "Chargement du graphe (" << path << ")" << endl;
 
@@ -33,9 +34,9 @@ int main(int argc, char **argv) {
 
     double elapsed_secs = double(end - begin) / CLOCKS_PER_SEC;
 
-    cout << "Fin du chargement(" << elapsed_secs << ")" << endl;
+    cout << "Fin du chargement(" << elapsed_secs << "s)" << endl;
 
-    cout << "Coloration " << endl;
+    cout << "Début Coloration " << endl;
 
     begin = clock();
 
@@ -45,7 +46,25 @@ int main(int argc, char **argv) {
 
     elapsed_secs = double(end - begin) / CLOCKS_PER_SEC;
 
-    cout << "Coloration " << endl;
+    cout << "Fin Coloration (" << elapsed_secs << "s)" << endl;
+
+    sl.calculNombreCouleur();
+
+    cout << "nombre de couleurs : " << sl.nombreCouleurs();
+
+    cout << "Début Ecriture fichier solution " << endl;
+
+    begin = clock();
+    string solution = "solution_" + path;
+
+    sl.creationSolution(solution);
+
+    end = clock();
+
+    elapsed_secs = double(end - begin) / CLOCKS_PER_SEC;
+
+    cout << "Fin Ecriture fichier solution (" << elapsed_secs << "s)" << endl;
+
 
     return EXIT_SUCCESS;
 }
